@@ -77,10 +77,14 @@
 
         // create the Geometry of four triangles
         var triGeom = triGeometry();
+        for(var i = 0; i < 4; i++){
+            triMaterials[i].side = THREE.DoubleSide;
+            triGeom.faces[i].materialIndex = i;
+        }
 
         // replace this statement with code to use your new materials
         // to color the faces of the triangle geometry
-        var triMesh = TW.createMesh(triGeom);
+        var triMesh = new THREE.Mesh(triGeom, triMaterials);
 
         // add the Mesh to the scene
         scene.add(triMesh);

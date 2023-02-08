@@ -45,12 +45,12 @@
             flagGeom.vertices.push(new THREE.Vector3(60, 0, 0));
 
             // add the faces
-            flagGeom.faces.push(new THREE.Face3(0, 2, 1));
-            flagGeom.faces.push(new THREE.Face3(0, 3, 2));
-            flagGeom.faces.push(new THREE.Face3(0, 4, 3));
-            flagGeom.faces.push(new THREE.Face3(0, 5, 4));
-            flagGeom.faces.push(new THREE.Face3(0, 6, 5));
-            flagGeom.faces.push(new THREE.Face3(0, 7, 6));
+            flagGeom.faces.push(new THREE.Face3(0, 2, 1)); // 0
+            flagGeom.faces.push(new THREE.Face3(0, 3, 2)); // 1
+            flagGeom.faces.push(new THREE.Face3(0, 4, 3)); // 2
+            flagGeom.faces.push(new THREE.Face3(0, 5, 4)); // 3
+            flagGeom.faces.push(new THREE.Face3(0, 6, 5)); // 4
+            flagGeom.faces.push(new THREE.Face3(0, 7, 6)); // 5
 
             return flagGeom;
         }
@@ -70,10 +70,20 @@
         var flagGeom = flagGeometry();
 
         // set the color for specific triangle faces
-
+        var flagMaterials = [new THREE.MeshBasicMaterial({color: new THREE.Color(0x003F87)}),
+                            new THREE.MeshBasicMaterial({color: new THREE.Color(0xFCD856)}),
+                            new THREE.MeshBasicMaterial({color: new THREE.Color(0xD62828)}),
+                            new THREE.MeshBasicMaterial({color: new THREE.Color(0xFFFFFF)}),
+                            new THREE.MeshBasicMaterial({color: new THREE.Color(0x007A3D)})];
+        flagGeom.faces[0].materialIndex = 0;
+        flagGeom.faces[1].materialIndex = 1;
+        flagGeom.faces[2].materialIndex = 2;
+        flagGeom.faces[3].materialIndex = 2;
+        flagGeom.faces[4].materialIndex = 3;
+        flagGeom.faces[5].materialIndex = 4;
 
         // create a mesh for the flag
-        var flagMesh = new THREE.Mesh(flagGeom, flagMaterial);
+        var flagMesh = new THREE.Mesh(flagGeom, flagMaterials);
 
         // add flag mesh to the scene
         scene.add(flagMesh);
